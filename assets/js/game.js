@@ -1,33 +1,27 @@
-let pipe = document.getElementById("pipe");
-let space = document.getElementById("space");
-let sprite = document.getElementById("sprite");
-let jumping = 0;
+var cvs = document.getElementById("canvas");
+var ctx = cvs.getContext("2d");
 
-space.addEventListener('animationiteration', () => {
-    let random = -((Math.random()*300) +150);
-    space.style.top = random + "px";
-});
-setInterval(function(){
-    let spriteTop = 
-    parseInt(window.getComputedStyle(sprite).getPropertyValue("top"));
-    if(jumping==0){
-        sprite.style.top = (spriteTop+3)+"px";
-    }
-},10);
+var bird = new Image();
+var bg = new Image();
+var fg = new Image();
+var pipeUp = new Image();
+var pipeDown = new Image();
 
-function jump(){
-    jumping = 1;
-    let jumpCount = 0;
-    var jumpInterval = setInterval(function(){
-        var spriteTop = parseInt(window.getComputedStyle(sprite).getPropertyValue("top"));
-        if((spriteTop>6)&&(counter<15)){
-            sprite.style.top = (spriteTop-10)+"px";
-        }
-        if(jumpCount>20) {
-            clearInterval(jumpInterval);
-            jumping=0;
-            jumpCount=0;
-        }
-        jumpCount++;
-    },10);
+// load images
+
+bird.src = "assets/images/fbsprite.png";
+bg.src = "assets/images/bg.png";
+fg.src = "assets/images/fg.png";
+pipeUp.src = "assets/images/pipeUp.png";
+pipeDown.src = "assets/images/pipeDown.png";
+
+// draw images
+
+function draw(){
+
+    ctx.drawImage(bg,0,0);
+
+
 }
+
+draw();
