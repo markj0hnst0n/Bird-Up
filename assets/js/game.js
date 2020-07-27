@@ -4,16 +4,16 @@ var ctx = cvs.getContext("2d");
 var bird = new Image();
 var bg = new Image();
 var fg = new Image();
-var pipeUp = new Image();
-var pipeDown = new Image();
+var pipeNorth = new Image();
+var pipeSouth = new Image();
 
 // load images
 
 bird.src = "assets/images/fbsprite.png";
 bg.src = "assets/images/bg.png";
 fg.src = "assets/images/fg.png";
-pipeUp.src = "assets/images/pipeUp.png";
-pipeDown.src = "assets/images/pipeDown.png";
+pipeNorth.src = "assets/images/pipeDown.png";
+pipeSouth.src = "assets/images/pipeUp.png";
 
 
 var gap = 80;
@@ -36,14 +36,24 @@ function moveUp(){
 
 var pipe = [];
 
+pipe [0] = {
+    x : cvs.width,
+    y : 0
+};
+
 // draw images
 
 function draw(){
 
     ctx.drawImage(bg,0,0);
 
-    ctx.drawImage(pipeDown,150,0);
-    ctx.drawImage(pipeUp,150,0+constant);
+    for(var i = 0; i < pipe.length; i++){
+        ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
+        ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+
+        pipe[i].x--;
+    }
+    
 
     ctx.drawImage(fg,0,cvs.height - fg.height);
 
