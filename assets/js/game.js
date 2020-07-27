@@ -16,20 +16,20 @@ pipeNorth.src = "assets/images/pipeDown.png";
 pipeSouth.src = "assets/images/pipeUp.png";
 
 
-var gap = 80;
+var gap = 200;
 var constant = pipeNorth.height+gap;
 
 var bX = 10;
 var bY = 150;
 
-var gravity = 1;
+var gravity = 1.5;
 
 // key press event
 
 document.addEventListener("keydown",moveUp);
 
 function moveUp(){
-    bY -= 20;
+    bY -= 30;
 }
 
 // pipe coordinates
@@ -52,6 +52,20 @@ function draw(){
         ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
 
         pipe[i].x--;
+
+        if( pipe[i].x == 125 ){
+            pipe.push({
+                x : cvs.width,
+                y : Math.floor(Math.random()*pipeNorth.height) -
+                pipeNorth.height
+            });
+        }
+
+        // Collision Detection
+        if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant)){
+            location.reload();
+        }
+
     }
     
 

@@ -50,3 +50,7 @@ NB: Speed Testing information on Lighthouse seemed to be variable as it could ch
 Use a table for this
 
 Bug 1 Jumping function doesn't work correctly.  Gravity doesn't kick in after jumping funtion is called so sprite stays fixed.
+
+The jumping function worked after re-load.  Not sure why.
+
+Collision detection not working correctly.  Not flagging when pipes are hit.  Lagging slightly.
