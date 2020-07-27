@@ -17,7 +17,7 @@ pipeSouth.src = "assets/images/pipeUp.png";
 
 
 var gap = 80;
-var constant = pipeUp.height+gap;
+var constant = pipeNorth.height+gap;
 
 var bX = 10;
 var bY = 150;
