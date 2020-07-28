@@ -2,3 +2,10 @@
     padding: 0;
     margin: 0;
 }
+
+.game-container {
+    width: 800px;
+    height: 800px;
+    border: 1px solid black;
+    margin: auto;
+}

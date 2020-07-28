@@ -65,6 +65,11 @@ function draw(){
         let collision = bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant) || bY + bird.height >= cvs.height - fg.height;
 
         if(collision){
+            if (confirm("Game Over!  Reload?")) {
+                location.reload();
+            } else {
+                txt = "You pressed Cancel!";
+            }
             return;
         }
 
