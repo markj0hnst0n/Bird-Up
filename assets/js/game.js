@@ -27,6 +27,7 @@ const gravity = 1.5;
 // key press event
 
 document.addEventListener("keydown",moveUp);
+document.addEventListener("click", moveUp);
 
 function moveUp(){
     bY -= 30;
