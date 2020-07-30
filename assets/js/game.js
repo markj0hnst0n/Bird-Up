@@ -9,6 +9,8 @@ const ctx = cvs.getContext("2d");
 document.addEventListener("keydown",moveUp);
 document.addEventListener("click", moveUp);
 
+// Declare Game Variables
+
 let bird = new Image();
 let bg = new Image();
 let fg = new Image();
@@ -34,7 +36,7 @@ function moveUp(){
     bY -= 30;
 }
 
-// pipe coordinates
+// pipe generation
 
 let pipe = [];
 
@@ -45,7 +47,7 @@ pipe [0] = {
 
 // Play Game
 
-function draw(){
+function animate(){
 
     ctx.drawImage(bg,0,0);
     ctx.drawImage(bird,bX,bY);
@@ -68,7 +70,6 @@ function draw(){
 
         let collision = bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeTop.width && (bY <= pipe[i].y + pipeTop.height || bY+bird.height >= pipe[i].y+gap) || bY + bird.height >= cvs.height - fg.height;
         
-        
         if(collision){
             if (confirm("Game Over!  Start Again?")) {
                 location.reload();
@@ -79,7 +80,7 @@ function draw(){
         }
     }
     ctx.drawImage(fg,0,cvs.height - fg.height);
-    requestAnimationFrame(draw);
+    requestAnimationFrame(animate);
 }
 
-draw();
+animate();
