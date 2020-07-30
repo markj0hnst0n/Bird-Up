@@ -6,7 +6,7 @@ const ctx = cvs.getContext("2d");
 
 // Event Listeners to control game
 
-document.addEventListener("keydown",moveUp);
+document.addEventListener("keydown", moveUp);
 document.addEventListener("click", moveUp);
 
 // Declare Game Variables
@@ -25,52 +25,53 @@ fg.src = "assets/images/fg.png";
 pipeTop.src = "assets/images/pipeDown.png";
 pipeBottom.src = "assets/images/pipeUp.png";
 
-const gap = pipeTop.height+200;
+const gap = pipeTop.height + 180;
 
 let bX = 10;
 let bY = 150;
 
 const gravity = 1.5;
 
-function moveUp(){
+function moveUp() {
     bY -= 30;
 }
 
-// pipe generation
+// pipe declaration
 
 let pipe = [];
 
-pipe [0] = {
-    x : cvs.width,
-    y : 0
+pipe[0] = {
+    x: cvs.width,
+    y: 0,
 };
 
 // Play Game
 
-function animate(){
-
-    ctx.drawImage(bg,0,0);
-    ctx.drawImage(bird,bX,bY);
+function animate() {
+    ctx.drawImage(bg, 0, 0);
+    ctx.drawImage(bird, bX, bY);
     bY += gravity;
 
-    for(let i = 0; i < pipe.length; i++){
-        ctx.drawImage(pipeTop,pipe[i].x,pipe[i].y);
-        ctx.drawImage(pipeBottom,pipe[i].x,pipe[i].y+gap);
+    //Pipe Generation
+
+    for (let i = 0; i < pipe.length; i++) {
+        ctx.drawImage(pipeTop, pipe[i].x, pipe[i].y);
+        ctx.drawImage(pipeBottom, pipe[i].x, pipe[i].y + gap);
 
         pipe[i].x--;
 
-        if( pipe[i].x == 125 ){
+        if (pipe[i].x == 125) {
             pipe.push({
-                x : cvs.width,
-                y : Math.floor(Math.random()*pipeTop.height) - pipeTop.height
+                x: cvs.width,
+                y: Math.floor(Math.random() * pipeTop.height) - pipeTop.height,
             });
         }
 
         // Collision Detection
 
-        let collision = bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeTop.width && (bY <= pipe[i].y + pipeTop.height || bY+bird.height >= pipe[i].y+gap) || bY + bird.height >= cvs.height - fg.height;
-        
-        if(collision){
+        let collision = (bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeTop.width && (bY <= pipe[i].y + pipeTop.height || bY + bird.height >= pipe[i].y + gap)) || bY + bird.height >= cvs.height - fg.height;
+
+        if (collision) {
             if (confirm("Game Over!  Start Again?")) {
                 location.reload();
             } else {
@@ -78,8 +79,12 @@ function animate(){
             }
             return;
         }
+        if(pipe[i].x == 5){
+            score++;
+        }
     }
-    ctx.drawImage(fg,0,cvs.height - fg.height);
+    ctx.drawImage(fg, 0, cvs.height - fg.height);
+
     requestAnimationFrame(animate);
 }
 
