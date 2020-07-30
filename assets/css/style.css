@@ -1,11 +1,5 @@
-*{
-    padding: 0;
-    margin: 0;
-}
-
-.game-container {
-    width: 800px;
-    height: 800px;
-    border: 1px solid black;
-    margin: auto;
-}
+.game-container{
+    border: 1px solid #000;
+    display: block;
+    margin: 0 auto;
+    }
